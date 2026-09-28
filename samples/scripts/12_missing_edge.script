@@ -1,0 +1,5 @@
+# 不存在的边：a 并没有指向 b 的引用。
+new a
+new b
+ref b a
+unref a b

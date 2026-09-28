@@ -1,0 +1,6 @@
+1 new a -> +a
+2 new b -> +b
+3 ref a b -> -
+4 unpin b -> -
+5 unref a b -> -b
+6 unref a b -> !dead

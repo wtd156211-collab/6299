@@ -1,0 +1,7 @@
+1 new a -> +a
+2 new b -> +b
+3 ref a b -> -
+4 ref b a -> -
+5 unpin a -> -
+6 unpin b -> -
+7 collect -> -a,-b

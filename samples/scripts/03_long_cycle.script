@@ -1,0 +1,34 @@
+# 长环与附着链：k1..k8 首尾相接，环上挂着只进不出的 tail；
+# 外部根 root 在时整条链都算可达，撤掉根之后整体回收。
+new k1
+new k2
+new k3
+new k4
+new k5
+new k6
+new k7
+new k8
+new tail
+ref k1 k2
+ref k2 k3
+ref k3 k4
+ref k4 k5
+ref k5 k6
+ref k6 k7
+ref k7 k8
+ref k8 k1
+ref k1 tail
+new root
+ref root k3
+unpin k1
+unpin k2
+unpin k3
+unpin k4
+unpin k5
+unpin k6
+unpin k7
+unpin k8
+unpin tail
+collect
+unpin root
+collect

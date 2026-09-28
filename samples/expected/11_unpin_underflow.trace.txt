@@ -1,0 +1,5 @@
+1 new b -> +b
+2 new c -> +c
+3 ref b c -> -
+4 unpin c -> -
+5 unpin c -> !underflow

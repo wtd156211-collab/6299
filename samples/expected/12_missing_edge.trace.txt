@@ -1,0 +1,4 @@
+1 new a -> +a
+2 new b -> +b
+3 ref b a -> -
+4 unref a b -> !noedge

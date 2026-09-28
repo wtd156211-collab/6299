@@ -1,0 +1,32 @@
+1 new k1 -> +k1
+2 new k2 -> +k2
+3 new k3 -> +k3
+4 new k4 -> +k4
+5 new k5 -> +k5
+6 new k6 -> +k6
+7 new k7 -> +k7
+8 new k8 -> +k8
+9 new tail -> +tail
+10 ref k1 k2 -> -
+11 ref k2 k3 -> -
+12 ref k3 k4 -> -
+13 ref k4 k5 -> -
+14 ref k5 k6 -> -
+15 ref k6 k7 -> -
+16 ref k7 k8 -> -
+17 ref k8 k1 -> -
+18 ref k1 tail -> -
+19 new root -> +root
+20 ref root k3 -> -
+21 unpin k1 -> -
+22 unpin k2 -> -
+23 unpin k3 -> -
+24 unpin k4 -> -
+25 unpin k5 -> -
+26 unpin k6 -> -
+27 unpin k7 -> -
+28 unpin k8 -> -
+29 unpin tail -> -
+30 collect -> -
+31 unpin root -> -root
+32 collect -> -k1,-k2,-k3,-k4,-k5,-k6,-k7,-k8,-tail

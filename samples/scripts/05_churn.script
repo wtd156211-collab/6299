@@ -1,0 +1,28 @@
+# 频繁增删引用：重边计数、pin/unpin 与 collect 交替；
+# 环被打断时按队列顺序即时级联释放。
+new a
+new b
+new c
+ref a b
+ref b a
+ref a c
+ref c a
+pin b
+unpin a
+unpin b
+unpin c
+collect
+unpin b
+unref a b
+unref a c
+new d
+new e
+ref d e
+ref e d
+ref d e
+pin d
+collect
+unpin d
+unpin e
+unpin d
+collect

@@ -1,0 +1,3 @@
+1 new a -> +a
+2 unpin a -> -a
+3 new a -> !redefine

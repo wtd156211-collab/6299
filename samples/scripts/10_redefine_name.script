@@ -1,0 +1,5 @@
+# 名字唯一不可复用：释放后再次 new 属于重定义。
+new a
+unpin a
+new a
+ref a a

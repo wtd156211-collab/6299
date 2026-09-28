@@ -1,0 +1,6 @@
+# 释放后再引用：b 的计数归零后被立即释放，随后对它 ref 属于已释放对象。
+new a
+new b
+unpin b
+ref a b
+new c

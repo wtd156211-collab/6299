@@ -1,0 +1,26 @@
+1 new a -> +a
+2 new b -> +b
+3 new c -> +c
+4 ref a b -> -
+5 ref b a -> -
+6 ref a c -> -
+7 ref c a -> -
+8 pin b -> -
+9 unpin a -> -
+10 unpin b -> -
+11 unpin c -> -
+12 collect -> -
+13 unpin b -> -
+14 unref a b -> -b
+15 unref a c -> -c,-a
+16 new d -> +d
+17 new e -> +e
+18 ref d e -> -
+19 ref e d -> -
+20 ref d e -> -
+21 pin d -> -
+22 collect -> -
+23 unpin d -> -
+24 unpin e -> -
+25 unpin d -> -
+26 collect -> -d,-e

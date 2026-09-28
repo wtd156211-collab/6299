@@ -1,0 +1,7 @@
+# 释放后再引用：先解开 a->b 让 b 释放，再对同一对做 unref。
+new a
+new b
+ref a b
+unpin b
+unref a b
+unref a b

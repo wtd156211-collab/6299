@@ -1,0 +1,19 @@
+# 级联释放顺序：hub 释放时按目标名字升序递减，归零者按 FIFO 队列依次释放。
+# 出边结构：hub->a、a->z、hub->k、k->m、m->n
+new hub
+new a
+new k
+new z
+new m
+new n
+ref hub a
+ref hub k
+ref a z
+ref k m
+ref m n
+unpin a
+unpin k
+unpin z
+unpin m
+unpin n
+unpin hub

@@ -1,0 +1,4 @@
+1 new a -> +a
+2 ref a a -> -
+3 unpin a -> -
+4 collect -> -a

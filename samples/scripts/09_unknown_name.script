@@ -1,0 +1,4 @@
+# 从未创建过的名字：参数与实际对象表对不上。
+new a
+ref a ghost
+new b

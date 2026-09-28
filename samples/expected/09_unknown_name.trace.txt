@@ -1,0 +1,2 @@
+1 new a -> +a
+2 ref a ghost -> !unknown

@@ -1,0 +1,6 @@
+# 外部持有为 0 的对象不能再解除持有。
+new b
+new c
+ref b c
+unpin c
+unpin c

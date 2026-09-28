@@ -1,0 +1,8 @@
+# 双对象互引：两侧的外部持有都解除后，两个对象互相支撑。
+new a
+new b
+ref a b
+ref b a
+unpin a
+unpin b
+collect
