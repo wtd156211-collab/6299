@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>引用计数 + 循环回收 · 回放</title>
+<style>
+  :root {
+    --bg: #fafafa; --panel: #ffffff; --line: #d8d8d8; --text: #222;
+    --muted: #777; --accent: #b03030; --mono: ui-monospace, SFMono-Regular,
+      Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 16px 20px 40px; background: var(--bg);
+    color: var(--text); font: 14px/1.5 -apple-system, "Segoe UI",
+      "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  h1 { font-size: 18px; margin: 0 0 12px; }
+  h2 { font-size: 14px; margin: 18px 0 8px; }
+  .panel {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 6px; padding: 10px 12px; margin-bottom: 12px;
+  }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  button, select, input[type="number"] {
+    font: inherit; padding: 4px 10px; border: 1px solid var(--line);
+    border-radius: 4px; background: #fff; cursor: pointer;
+  }
+  button:disabled { opacity: 0.45; cursor: default; }
+  .mono { font-family: var(--mono); }
+  .muted { color: var(--muted); }
+  #dropzone {
+    border: 1px dashed var(--line); border-radius: 6px;
+    padding: 6px 12px; color: var(--muted);
+  }
+  #dropzone.over { border-color: var(--accent); color: var(--accent); }
+  #status { font-family: var(--mono); white-space: pre-wrap; }
+  #events { font-family: var(--mono); }
+  #events .free { color: var(--accent); }
+  #events .err { color: var(--accent); font-weight: 600; }
+  canvas { display: block; width: 100%; background: #fff;
+    border: 1px solid var(--line); border-radius: 6px; cursor: crosshair; }
+  #legend { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px;
+    font-family: var(--mono); font-size: 12px; }
+  #legend span::before { content: "■ "; }
+  table { border-collapse: collapse; font-family: var(--mono);
+    font-size: 12px; width: 100%; }
+  th, td { border: 1px solid var(--line); padding: 2px 8px;
+    text-align: left; }
+  th { background: #f0f0f0; }
+  #cycles li { font-family: var(--mono); font-size: 12px; }
+  #slider { flex: 1; min-width: 160px; }
+</style>
+</head>
+<body>
+<h1>引用计数 + 循环回收 · 脚本回放</h1>
+
+<div class="panel row">
+  <label>样例
+    <select id="sample"></select>
+  </label>
+  <button id="loadSample">加载样例</button>
+  <label>本地脚本 <input type="file" id="file" accept=".script,.txt"></label>
+  <span id="dropzone">或把 .script 文件拖到本页任意位置</span>
+</div>
+
+<div class="panel row">
+  <button id="prev">上一步</button>
+  <button id="next">单步</button>
+  <button id="play">播放</button>
+  <button id="reset">重置</button>
+  <label>每拍步数 <input type="number" id="speed" value="1" min="1" style="width:64px"></label>
+  <input type="range" id="slider" min="0" value="0">
+  <span id="pos" class="mono muted"></span>
+</div>
+
+<div class="panel">
+  <div id="status"></div>
+  <div id="events"></div>
+</div>
+
+<h2>存活数量时间轴（按对象类别，类别 = 名字去掉尾部数字）</h2>
+<canvas id="chart" height="260"></canvas>
+<div id="legend"></div>
+<div id="cycleSummary" class="mono"></div>
+<ul id="cycles"></ul>
+
+<h2>当前步存活对象</h2>
+<div class="panel">
+  <div id="liveCount" class="mono"></div>
+  <table id="objTable">
+    <thead><tr><th>名字</th><th>ext</th><th>int</th><th>rc</th><th>出边（目标×条数）</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <div id="tableNote" class="muted"></div>
+</div>
+
+<script type="module" src="./app.js"></script>
+</body>
+</html>
